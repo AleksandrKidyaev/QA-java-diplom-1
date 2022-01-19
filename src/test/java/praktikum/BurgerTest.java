@@ -30,19 +30,16 @@ public class BurgerTest {
 
     @Test
     public void burgerAddIngredientTest(){
-        for(int i = 1; i <= 5; i++) {
+        for(int i = 0; i <= 4; i++) {
             burger.addIngredient(database.availableIngredients().get(i));
         }
         int actualSize = burger.ingredients.size();
-        assertNotEquals("Ни один из ингредиентов не был добавлен",0, actualSize);
-        assertNotEquals("Один из ингредиентов не был добавлен",4, actualSize);
-        assertNotEquals("Добавилось больше ингредиентов чем должно было",6, actualSize);
         assertEquals(5, actualSize);
     }
 
     @Test
     public void burgerRemoveIngredientTest(){
-        for(int i = 1; i <= 5; i++) {
+        for(int i = 0; i <= 4; i++) {
             burger.addIngredient(database.availableIngredients().get(i));
         }
         int sizeBeforeDelete = burger.ingredients.size();
@@ -52,7 +49,7 @@ public class BurgerTest {
 
     @Test
     public void burgerMoveIngredientTest(){
-        for(int i = 1; i <= 5; i++) {
+        for(int i = 0; i <= 4; i++) {
             burger.addIngredient(database.availableIngredients().get(i));
         }
         Ingredient ingredientBeforeMoving = burger.ingredients.get(4);
@@ -73,12 +70,12 @@ public class BurgerTest {
     @Test
     public void burgerGetReceiptTest(){
         burger.setBuns(mockBun);
-        for(int i = 1; i <= 3; i++) {
+        for(int i = 0; i <= 2; i++) {
             burger.addIngredient(database.availableIngredients().get(i));
         }
-        String firstName = database.availableIngredients().get(1).getName();
-        String secondName = database.availableIngredients().get(2).getName();
-        String thirdName = database.availableIngredients().get(3).getName();
+        String firstName = database.availableIngredients().get(0).getName();
+        String secondName = database.availableIngredients().get(1).getName();
+        String thirdName = database.availableIngredients().get(2).getName();
         Mockito.when(mockBun.getName()).thenReturn("Тестовая булка");
         assertTrue(burger.getReceipt().contains("Тестовая булка")
                 &burger.getReceipt().contains(firstName)
